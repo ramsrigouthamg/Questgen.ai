@@ -261,7 +261,7 @@ def generate_questions_mcq(keyword_sent_mapping,device,tokenizer,model,sense2vec
 
     return output_array
 
-def generate_questions(keyword_sent_mapping,device,tokenizer,model):  #for normal one word questions
+def generate_normal_questions(keyword_sent_mapping,device,tokenizer,model):  #for normal one word questions
     batch_text = []
     answers = keyword_sent_mapping.keys()
     for answer in answers:
