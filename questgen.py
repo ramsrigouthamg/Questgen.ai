@@ -29,7 +29,7 @@ from mcq import tokenize_sentences
 from mcq import get_keywords
 from mcq import get_sentences_for_keyword
 from mcq import generate_questions_mcq
-from mcq import generate_questions
+from mcq import generate_normal_questions
 
 class PythonPredictor:
     
@@ -101,7 +101,7 @@ class PythonPredictor:
                 
             return final_output
     
-    def predict_questions(self, payload):
+    def predict_shortq(self, payload):
         inp = {
             "input_text": payload.get("input_text"),
             "max_questions": payload.get("max_questions", 4)
@@ -129,7 +129,7 @@ class PythonPredictor:
             return final_output
         else:
             
-            generated_questions = generate_questions(keyword_sentence_mapping,self.device,self.tokenizer,self.model)
+            generated_questions = generate_normal_questions(keyword_sentence_mapping,self.device,self.tokenizer,self.model)
             print(generated_questions)
 
             
@@ -145,7 +145,7 @@ class PythonPredictor:
         a = random.choice([0,1])
         return bool(a)
     
-    def predict_bool(self,payload):
+    def predict_boolq(self,payload):
         start = time.time()
         inp = {
             "input_text": payload.get("input_text"),
