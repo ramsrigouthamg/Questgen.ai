@@ -71,6 +71,9 @@ payload={
 output= generator.predict_answer(payload)
 ```
 
+### Colab Demo
+<a href="https://colab.research.google.com/drive/144vAp5UVFHqPWLEXtBX4gaAPeVZumlzK?usp=sharing">Google Colab </a>
+
 ### NLP models used
 
 For maintaining meaningfulness in Questions, Questgen uses Three T5 models, one for Boolean Question generation, one for MCQ, Short Questions, Paraphrasing and one for Answer generation.
