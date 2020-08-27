@@ -28,7 +28,7 @@ wget https://github.com/explosion/sense2vec/releases/download/v1.0.0/s2v_reddit_
 tar -xvf  s2v_reddit_2015_md.tar.gz
 ```
 
-*For MCQ, Short Question and Paraphrasing Question generation*
+**For MCQ, Short Question and Paraphrasing Question generation**
 ```
 import Questgen
 generator= main.QGen()                          #instance of QGen class
@@ -44,7 +44,7 @@ output3= generator.paraphrase(payload)          #For paraphrasing questions
 ```
 
 
-*For Boolean question generation*
+**For Boolean question generation**
 ```
 import Questgen
 generator= main.BoolQGen()                      #instance of BoolQGen class
@@ -58,7 +58,7 @@ output= generator.predict_boolq(payload)
 ```
 
 
-*For Answer prediction from a given question*
+**For Answer prediction from a given question**
 ```
 import Questgen
 generator= main.AnswerPredictor()
