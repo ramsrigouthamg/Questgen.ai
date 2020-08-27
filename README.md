@@ -8,7 +8,8 @@ Questgen AI is focused on developing Question generation algorithms using state-
   -- Normal Questions :     (What,Where,Who,how,When etc) <br>
   -- MCQ Questions :        Generate Questions with answers and similar options <br>
   -- Boolean Questions :    (Is,Did,Does etc) Output is expected either True/False <br>
-  -- Paraphrase Questions : Generate similar but different questions from a given question 
+  -- Paraphrase Questions : Generate similar but different questions from a given question <br>
+  -- Answering :            Any question can be answered provided with a context.
 </pre>
 
 ### Prerequisites
@@ -20,6 +21,53 @@ python -m spacy download en
 ```
 ### Using the library
 
+**pip install git+https://github.com/ramsrigouthamg/Questgen.ai**
+
+*For MCQ, Short Question and Paraphrasing Question generation*
+```
+import Questgen
+generator= main.QGen()                          #instance of QGen class
+
+payload={
+    "input_text" :   'Text',
+    "max_questions" : 5                         #Default 4
+    }
+    
+output1= generator.predict_mcq(payload)         #For MCQ generation       
+output2= generator.predict_shortq(payload)      #For Short Answers' Question generaiton
+output3= generator.paraphrase(payload)          #For paraphrasing questions
+```
+
+
+*For Boolean question generation*
+```
+import Questgen
+generator= main.BoolQGen()                      #instance of BoolQGen class
+
+payload={
+    "input_text" :   'Text',
+    "max_questions" : 5                         #Default 4
+    }
+
+output= generator.predict_boolq(payload)
+```
+
+
+*For Answer prediction from a given question*
+```
+import Questgen
+generator= main.AnswerPredictor()
+
+payload={
+    "input_text" :   'Text',
+    "input_question" : 'Question'                         
+    }
+
+output= generator.predict_answer(payload)
+```
+
 ### NLP models used
+
+For maintaining meaningfulness in Questions, Questgen uses Three T5 models, one for Boolean Question generation, one for MCQ, Short Questions, Paraphrasing and one for Answer generation.
 
 ### Online Demo website

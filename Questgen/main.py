@@ -25,17 +25,18 @@ from nltk.corpus import brown
 from similarity.normalized_levenshtein import NormalizedLevenshtein
 from nltk.tokenize import sent_tokenize
 from flashtext import KeywordProcessor
-from encoding import beam_search_decoding
-from mcq import tokenize_sentences
-from mcq import get_keywords
-from mcq import get_sentences_for_keyword
-from mcq import generate_questions_mcq
-from mcq import generate_normal_questions
+from Questgen.encoding.encoding import beam_search_decoding
+from Questgen.mcq.mcq import tokenize_sentences
+from Questgen.mcq.mcq import get_keywords
+from Questgen.mcq.mcq import get_sentences_for_keyword
+from Questgen.mcq.mcq import generate_questions_mcq
+from Questgen.mcq.mcq import generate_normal_questions
 import time
-class PythonPredictor:
+
+class QGen:
     
     def __init__(self):
-        model_file_1 = "../input/s2v-old/s2v_old"
+        
         
         self.tokenizer = T5Tokenizer.from_pretrained('t5-base')
         model = T5ForConditionalGeneration.from_pretrained('Parth/result')
@@ -46,7 +47,7 @@ class PythonPredictor:
         self.model = model
         self.nlp = spacy.load('en_core_web_sm')
 
-        self.s2v = Sense2Vec().from_disk('../input/s2v-old/s2v_old')
+        self.s2v = Sense2Vec().from_disk('s2v_old')
 
         self.fdist = FreqDist(brown.words())
         self.normalized_levenshtein = NormalizedLevenshtein()
@@ -169,10 +170,10 @@ class PythonPredictor:
             early_stopping=True
             )
 
-        print ("\nOriginal Question ::")
-        print (text)
-        print ("\n")
-        print ("Paraphrased Questions :: ")
+#         print ("\nOriginal Question ::")
+#         print (text)
+#         print ("\n")
+#         print ("Paraphrased Questions :: ")
         final_outputs =[]
         for beam_output in beam_outputs:
             sent = self.tokenizer.decode(beam_output, skip_special_tokens=True,clean_up_tokenization_spaces=True)
@@ -193,7 +194,7 @@ class PythonPredictor:
         return output
 
 
-class BooleanPredictor:
+class BoolQGen:
        
     def __init__(self):
         self.tokenizer = T5Tokenizer.from_pretrained('t5-base')
@@ -263,7 +264,7 @@ class AnswerPredictor:
         if torch.cuda.is_available():
             torch.cuda.manual_seed_all(seed)
 
-    def greedy_decoding (inp_ids,attn_mask):
+    def greedy_decoding (inp_ids,attn_mask,model,tokenizer):
         greedy_output = model.generate(input_ids=inp_ids, attention_mask=attn_mask, max_length=256)
         Question =  tokenizer.decode(greedy_output[0], skip_special_tokens=True,clean_up_tokenization_spaces=True)
         return Question.strip().capitalize()
@@ -279,8 +280,10 @@ class AnswerPredictor:
         question = inp["input_question"]
         input = "question: %s <s> context: %s </s>" % (question,context)
 
-        encoding = tokenizer.encode_plus(input, return_tensors="pt")
-        input_ids, attention_masks = encoding["input_ids"].to(device), encoding["attention_mask"].to(device)
-        output = greedy_decoding(input_ids,attention_masks)
+        encoding = self.tokenizer.encode_plus(input, return_tensors="pt")
+        input_ids, attention_masks = encoding["input_ids"].to(self.device), encoding["attention_mask"].to(self.device)
+        greedy_output = self.model.generate(input_ids=input_ids, attention_mask=attention_masks, max_length=256)
+        Question =  self.tokenizer.decode(greedy_output[0], skip_special_tokens=True,clean_up_tokenization_spaces=True)
+        output = Question.strip().capitalize()
 
         return output
