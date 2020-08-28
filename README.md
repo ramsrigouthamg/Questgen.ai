@@ -1,6 +1,6 @@
-# Questgen AI <br>
-https://questgen.ai/  [![Linkedin Link](linkedin.png)](https://www.linkedin.com/company/30182152/)
-
+# Questgen AI    <br>
+https://questgen.ai/  
+[![Linkedin Link](linkedin.png)](https://www.linkedin.com/company/30182152/)
 
 Questgen AI is focused on developing Question generation algorithms using state-of-the-art Natural Language Processing techniques. It is very focused on ease of use. 
 
