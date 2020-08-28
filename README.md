@@ -38,51 +38,166 @@ wget https://github.com/explosion/sense2vec/releases/download/v1.0.0/s2v_reddit_
 tar -xvf  s2v_reddit_2015_md.tar.gz
 ```
 
+## 2. Running the code
 
-**For MCQ, Short Question and Paraphrasing Question generation**
+### 2.1 Generate boolean (Yes/No) Questions
 ```
-import Questgen
-generator= main.QGen()                          #instance of QGen class
+from pprint import pprint
+from Questgen import main
+qe= main.BoolQGen()
+payload = {
+            "input_text": "Sachin Ramesh Tendulkar is a former international cricketer from India and a former captain of the Indian national team. He is widely regarded as one of the greatest batsmen in the history of cricket. He is the highest run scorer of all time in International cricket."
+        }
+output = qe.predict_boolq(payload)
+pprint (output)
+```
+**Output**
 
-payload={
-    "input_text" :   'Text',
-    "max_questions" : 5                         #Default 4
-    }
+```
+'Boolean Questions': ['Is sachin ramesh tendulkar the highest run scorer in '
+                       'cricket?',
+                       'Is sachin ramesh tendulkar the highest run scorer in '
+                       'cricket?',
+                       'Is sachin tendulkar the highest run scorer in '
+                       'cricket?']
+
+```
+
+### 2.2 Generate MCQ Questions
+```
+    qg = main.QGen()
+    output = qg.predict_mcq(payload)
+    pprint (output)
     
-output1= generator.predict_mcq(payload)         #For MCQ generation       
-output2= generator.predict_shortq(payload)      #For Short Answers' Question generaiton
-output3= generator.paraphrase(payload)          #For paraphrasing questions
+```
+ **Output**
+```
+    {'questions': [{'answer': 'cricketer',
+                'context': 'Sachin Ramesh Tendulkar is a former international '
+                           'cricketer from India and a former captain of the '
+                           'Indian national team.',
+                'extra_options': ['Mark Waugh',
+                                  'Sharma',
+                                  'Ricky Ponting',
+                                  'Afridi',
+                                  'Kohli',
+                                  'Dhoni'],
+                'id': 1,
+                'options': ['Brett Lee', 'Footballer', 'International Cricket'],
+                'options_algorithm': 'sense2vec',
+                'question_statement': "What is Sachin Ramesh Tendulkar's "
+                                      'career?',
+                'question_type': 'MCQ'},
+               {'answer': 'india',
+                'context': 'Sachin Ramesh Tendulkar is a former international '
+                           'cricketer from India and a former captain of the '
+                           'Indian national team.',
+                'extra_options': ['Pakistan',
+                                  'South Korea',
+                                  'Nepal',
+                                  'Philippines',
+                                  'Zimbabwe'],
+                'id': 2,
+                'options': ['Bangladesh', 'Indonesia', 'China'],
+                'options_algorithm': 'sense2vec',
+                'question_statement': 'Where is Sachin Ramesh Tendulkar from?',
+                'question_type': 'MCQ'},
+               {'answer': 'batsmen',
+                'context': 'He is widely regarded as one of the greatest '
+                           'batsmen in the history of cricket.',
+                'extra_options': ['Ashwin', 'Dhoni', 'Afridi', 'Death Overs'],
+                'id': 3,
+                'options': ['Bowlers', 'Wickets', 'Mccullum'],
+                'options_algorithm': 'sense2vec',
+                'question_statement': 'What is the best cricketer?',
+                'question_type': 'MCQ'}]}
+```
+    
+### 2.3 Generate MCQ Questions
+
+```
+output = qg.predict_shortq(payload)
+pprint (output)
+```
+ **Output**
+ ```
+ {'questions': [{'Answer': 'cricketer',
+                'Question': "What is Sachin Ramesh Tendulkar's career?",
+                'context': 'Sachin Ramesh Tendulkar is a former international '
+                           'cricketer from India and a former captain of the '
+                           'Indian national team.',
+                'id': 1},
+               {'Answer': 'india',
+                'Question': 'Where is Sachin Ramesh Tendulkar from?',
+                'context': 'Sachin Ramesh Tendulkar is a former international '
+                           'cricketer from India and a former captain of the '
+                           'Indian national team.',
+                'id': 2},
+               {'Answer': 'batsmen',
+                'Question': 'What is the best cricketer?',
+                'context': 'He is widely regarded as one of the greatest '
+                           'batsmen in the history of cricket.',
+                'id': 3}]
+ }
+ ```
+
+### 2.4 Paraphrasing Questions
+```
+payload2 = {
+    "input_text" : "What is Sachin Tendulkar profession?",
+    "max_questions": 5
+}
+output = qg.paraphrase(payload2)
+pprint (output)
+
+```
+**Output**
+```
+{'Paraphrased Questions': ["ParaphrasedTarget: What is Sachin Tendulkar's "
+                           'profession?',
+                           "ParaphrasedTarget: What is Sachin Tendulkar's "
+                           'career?',
+                           "ParaphrasedTarget: What is Sachin Tendulkar's job?",
+                           'ParaphrasedTarget: What is Sachin Tendulkar?',
+                           "ParaphrasedTarget: What is Sachin Tendulkar's "
+                           'occupation?'],
+ 'Question': 'What is Sachin Tendulkar profession?'}
 ```
 
 
-**For Boolean question generation**
+### 2.5 Question Answering (Simple)
 ```
-import Questgen
-generator= main.BoolQGen()                      #instance of BoolQGen class
+answer = main.AnswerPredictor()
+payload3 = {
+    "input_text" : '''Sachin Ramesh Tendulkar is a former international cricketer from 
+              India and a former captain of the Indian national team. He is widely regarded 
+              as one of the greatest batsmen in the history of cricket. He is the highest
+               run scorer of all time in International cricket.''',
+    "input_question" : "Who is Sachin tendulkar ? "
+    
+}
+output = answer.predict_answer(payload3)
 
-payload={
-    "input_text" :   'Text',
-    "max_questions" : 5                         #Default 4
-    }
-
-output= generator.predict_boolq(payload)
 ```
-
-
-**For Answer prediction from a given question**
+**Output**
 ```
-import Questgen
-generator= main.AnswerPredictor()
-
-payload={
-    "input_text" :   'Text',
-    "input_question" : 'Question'                         
-    }
-
-output= generator.predict_answer(payload)
+Sachin ramesh tendulkar is a former international cricketer from india and a former captain of the indian national team.
 ```
 
-
+### 2.6 Question Answering (Boolean)
+```
+payload4 = {
+    "input_text" : '''Sachin Ramesh Tendulkar is a former international cricketer from 
+              India and a former captain of the Indian national team. He is widely regarded 
+              as one of the greatest batsmen in the history of cricket. He is the highest
+               run scorer of all time in International cricket.''',
+    "input_question" : "Is Sachin tendulkar  a former cricketer? "
+}
+```
+**Output**
+```
+Yes, sachin tendulkar is a former cricketer.
+```
 
 ### NLP models used
 
