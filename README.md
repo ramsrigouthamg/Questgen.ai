@@ -1,8 +1,12 @@
-# Questgen AI    <br>
+# Questgen AI   <br>
 https://questgen.ai/  
 
 
-Questgen AI is focused on developing Question generation algorithms using state-of-the-art Natural Language Processing techniques. It is very focused on ease of use. 
+Questgen AI is an opensource NLP library focused on developing easy to use Question generation algorithms.<br>
+It is on a quest build the world's most advanced question generation AI leveraging on state-of-the-art transformer models like T5, BERT and OpenAI GPT-2 etc.
+
+
+<img src= './quest.gif' >
 
 ### Currently Supported Question Generation Capabilities :
 <pre>
@@ -13,26 +17,27 @@ Questgen AI is focused on developing Question generation algorithms using state-
 5. Question Answering.
 </pre>
 
-<img src= './quest.gif' >
-
-### Simple and Complete Google Colab Demo
+## Simple and Complete Google Colab Demo
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1CvgSjU48kN5jEtCU732soM723W1spGdm?usp=sharing)
 
 
+## 1. Installation
 
-### Prerequisites
+### 1.1 Libraries
 ```
-pip install -r requirements.txt
+pip install git+https://github.com/ramsrigouthamg/Questgen.ai
+pip install sense2vec==1.0.2
 pip install git+https://github.com/boudinfl/pke.git
+
 python -m nltk.downloader universal_tagset
 python -m spacy download en 
 ```
-### Using the library
+### 1.2 Download and extract zip of Sense2vec wordvectors that are used for generation of multiple choices.
 ```
-pip install git+https://github.com/ramsrigouthamg/Questgen.ai
 wget https://github.com/explosion/sense2vec/releases/download/v1.0.0/s2v_reddit_2015_md.tar.gz
 tar -xvf  s2v_reddit_2015_md.tar.gz
 ```
+
 
 **For MCQ, Short Question and Paraphrasing Question generation**
 ```
@@ -86,4 +91,6 @@ For maintaining meaningfulness in Questions, Questgen uses Three T5 models, one 
 ### Online Demo website
 Under development...
 https://questgen.ai/
+
+
 [![Linkedin Link](linkedin.png)](https://www.linkedin.com/company/30182152/)
