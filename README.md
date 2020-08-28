@@ -1,6 +1,6 @@
 # Questgen AI    <br>
 https://questgen.ai/  
-[![Linkedin Link](linkedin.png)](https://www.linkedin.com/company/30182152/)
+
 
 Questgen AI is focused on developing Question generation algorithms using state-of-the-art Natural Language Processing techniques. It is very focused on ease of use. 
 
@@ -16,7 +16,7 @@ Questgen AI is focused on developing Question generation algorithms using state-
 <img src= './quest.gif' >
 
 ### Simple and Complete Google Colab Demo
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1CvgSjU48kN5jEtCU732soM723W1spGdm?usp=sharing]
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1CvgSjU48kN5jEtCU732soM723W1spGdm?usp=sharing)
 
 
 
@@ -86,3 +86,4 @@ For maintaining meaningfulness in Questions, Questgen uses Three T5 models, one 
 ### Online Demo website
 Under development...
 https://questgen.ai/
+[![Linkedin Link](linkedin.png)](https://www.linkedin.com/company/30182152/)
