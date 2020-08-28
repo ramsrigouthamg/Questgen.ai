@@ -121,7 +121,7 @@ pprint (output)
 </details> 
 
 
-### 2.3 Generate MCQ Questions
+### 2.3 Generate FAQ Questions
 
 ```
 output = qg.predict_shortq(payload)
