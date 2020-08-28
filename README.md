@@ -51,7 +51,7 @@ payload = {
 output = qe.predict_boolq(payload)
 pprint (output)
 ```
-**Output**
+**Code Output**
 
 ```
 'Boolean Questions': ['Is sachin ramesh tendulkar the highest run scorer in '
@@ -70,7 +70,7 @@ pprint (output)
     pprint (output)
     
 ```
- **Output**
+ **Code Output**
 ```
     {'questions': [{'answer': 'cricketer',
                 'context': 'Sachin Ramesh Tendulkar is a former international '
@@ -119,7 +119,7 @@ pprint (output)
 output = qg.predict_shortq(payload)
 pprint (output)
 ```
- **Output**
+ **Code Output**
  ```
  {'questions': [{'Answer': 'cricketer',
                 'Question': "What is Sachin Ramesh Tendulkar's career?",
@@ -151,7 +151,7 @@ output = qg.paraphrase(payload2)
 pprint (output)
 
 ```
-**Output**
+**Code Output**
 ```
 {'Paraphrased Questions': ["ParaphrasedTarget: What is Sachin Tendulkar's "
                            'profession?',
@@ -179,7 +179,7 @@ payload3 = {
 output = answer.predict_answer(payload3)
 
 ```
-**Output**
+**Code Output**
 ```
 Sachin ramesh tendulkar is a former international cricketer from india and a former captain of the indian national team.
 ```
@@ -193,8 +193,10 @@ payload4 = {
                run scorer of all time in International cricket.''',
     "input_question" : "Is Sachin tendulkar  a former cricketer? "
 }
+output = answer.predict_answer(payload4)
+print (output)
 ```
-**Output**
+**Code Output**
 ```
 Yes, sachin tendulkar is a former cricketer.
 ```
