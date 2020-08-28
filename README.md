@@ -76,6 +76,7 @@ pprint (output)
 
 <details>
 <summary>Show Output</summary>
+            
 ```
     {'questions': [{'answer': 'cricketer',
                 'context': 'Sachin Ramesh Tendulkar is a former international '
@@ -165,6 +166,7 @@ pprint (output)
 ```
 <details>
 <summary>Show Output</summary>
+            
 ```
 {'Paraphrased Questions': ["ParaphrasedTarget: What is Sachin Tendulkar's "
                            'profession?',
@@ -194,6 +196,7 @@ output = answer.predict_answer(payload3)
 ```
 <details>
 <summary>Show Output</summary>
+            
 ```
 Sachin ramesh tendulkar is a former international cricketer from india and a former captain of the indian national team.
 ```
@@ -213,6 +216,7 @@ print (output)
 ```
 <details>
 <summary>Show Output</summary>
+            
 ```
 Yes, sachin tendulkar is a former cricketer.
 ```
