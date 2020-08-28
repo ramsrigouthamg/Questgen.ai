@@ -51,7 +51,9 @@ payload = {
 output = qe.predict_boolq(payload)
 pprint (output)
 ```
-**Code Output**
+
+<details>
+<summary>Show Output</summary>
 
 ```
 'Boolean Questions': ['Is sachin ramesh tendulkar the highest run scorer in '
@@ -62,6 +64,7 @@ pprint (output)
                        'cricket?']
 
 ```
+</details>
 
 ### 2.2 Generate MCQ Questions
 ```
@@ -70,7 +73,9 @@ pprint (output)
     pprint (output)
     
 ```
- **Code Output**
+
+<details>
+<summary>Show Output</summary>
 ```
     {'questions': [{'answer': 'cricketer',
                 'context': 'Sachin Ramesh Tendulkar is a former international '
@@ -112,14 +117,20 @@ pprint (output)
                 'question_statement': 'What is the best cricketer?',
                 'question_type': 'MCQ'}]}
 ```
-    
+</details> 
+
+
 ### 2.3 Generate MCQ Questions
 
 ```
 output = qg.predict_shortq(payload)
 pprint (output)
 ```
- **Code Output**
+
+
+<details>
+<summary>Show Output</summary>
+
  ```
  {'questions': [{'Answer': 'cricketer',
                 'Question': "What is Sachin Ramesh Tendulkar's career?",
@@ -140,6 +151,7 @@ pprint (output)
                 'id': 3}]
  }
  ```
+</details>
 
 ### 2.4 Paraphrasing Questions
 ```
@@ -151,7 +163,8 @@ output = qg.paraphrase(payload2)
 pprint (output)
 
 ```
-**Code Output**
+<details>
+<summary>Show Output</summary>
 ```
 {'Paraphrased Questions': ["ParaphrasedTarget: What is Sachin Tendulkar's "
                            'profession?',
@@ -163,7 +176,7 @@ pprint (output)
                            'occupation?'],
  'Question': 'What is Sachin Tendulkar profession?'}
 ```
-
+</details>
 
 ### 2.5 Question Answering (Simple)
 ```
@@ -179,10 +192,12 @@ payload3 = {
 output = answer.predict_answer(payload3)
 
 ```
-**Code Output**
+<details>
+<summary>Show Output</summary>
 ```
 Sachin ramesh tendulkar is a former international cricketer from india and a former captain of the indian national team.
 ```
+</details>
 
 ### 2.6 Question Answering (Boolean)
 ```
@@ -196,14 +211,16 @@ payload4 = {
 output = answer.predict_answer(payload4)
 print (output)
 ```
-**Code Output**
+<details>
+<summary>Show Output</summary>
 ```
 Yes, sachin tendulkar is a former cricketer.
 ```
+</details>
 
 ### NLP models used
 
-For maintaining meaningfulness in Questions, Questgen uses Three T5 models, one for Boolean Question generation, one for MCQ, Short Questions, Paraphrasing and one for Answer generation.
+For maintaining meaningfulness in Questions, Questgen uses Three T5 models. One for Boolean Question generation, one for MCQs, FAQs, Paraphrasing and one for answer generation.
 
 ### Online Demo website
 Under development...
