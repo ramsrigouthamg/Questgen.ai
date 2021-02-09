@@ -47,7 +47,7 @@ def edits(word):
 
 def sense2vec_get_words(word,s2v):
     output = []
-
+    OrignialAnswer=word
     word_preprocessed =  word.translate(word.maketrans("","", string.punctuation))
     word_preprocessed = word_preprocessed.lower()
 
@@ -71,13 +71,13 @@ def sense2vec_get_words(word,s2v):
 
     out = list(OrderedDict.fromkeys(output))
 
-    return out
+    return out,OrignialAnswer
 
 def get_options(answer,s2v):
     distractors =[]
 
     try:
-        distractors = sense2vec_get_words(answer,s2v)
+        distractors,OrignialAnswer1 = sense2vec_get_words(answer,s2v)
         if len(distractors) > 0:
             print(" Sense2vec_distractors successful for word : ", answer)
             return distractors,"sense2vec"
@@ -85,7 +85,7 @@ def get_options(answer,s2v):
         print (" Sense2vec_distractors failed for word : ",answer)
 
 
-    return distractors,"None"
+    return distractors,OrignialAnswer1,"None"
 
 def tokenize_sentences(text):
     sentences = [sent_tokenize(text)]
@@ -248,7 +248,7 @@ def generate_questions_mcq(keyword_sent_mapping,device,tokenizer,model,sense2vec
         individual_question["question_type"] = "MCQ"
         individual_question["answer"] = val
         individual_question["id"] = index+1
-        individual_question["options"], individual_question["options_algorithm"] = get_options(val, sense2vec)
+        individual_question["options"], individual_question["options_algorithm"],individual_question["Original_answer"] = get_options(val, sense2vec)
 
         individual_question["options"] =  filter_phrases(individual_question["options"], 10,normalized_levenshtein)
         index = 3
