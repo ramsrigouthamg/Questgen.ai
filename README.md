@@ -5,7 +5,9 @@ https://questgen.ai/
 Questgen AI is an opensource NLP library focused on developing easy to use Question generation algorithms.<br>
 It is on a quest build the world's most advanced question generation AI leveraging on state-of-the-art transformer models like T5, BERT and OpenAI GPT-2 etc.
 
-Blog(for detailed use): https://towardsdatascience.com/questgen-an-open-source-nlp-library-for-question-generation-algorithms-1e18067fcdc6
+[## Our online course that teaches how to build these models from scratch] (https://www.udemy.com/course/question-generation-using-natural-language-processing/?referralCode=C8EA86A28F5398CBF763)
+
+[Blog announcing the launch] (https://towardsdatascience.com/questgen-an-open-source-nlp-library-for-question-generation-algorithms-1e18067fcdc6)
 
 <img src= './quest.gif' >
 
