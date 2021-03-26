@@ -48,6 +48,8 @@ tar -xvf  s2v_reddit_2015_md.tar.gz
 ### 2.1 Generate boolean (Yes/No) Questions
 ```
 from pprint import pprint
+import nltk
+nltk.download('stopwords')
 from Questgen import main
 qe= main.BoolQGen()
 payload = {
