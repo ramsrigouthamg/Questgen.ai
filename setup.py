@@ -26,7 +26,7 @@ setup(name='Questgen',
            'pytz==2020.1',
            'python-dateutil==2.8.1',
            'boto3==1.14.40',
-           'flashtext==2.7'
+           'flashtext==2.7',
            'pandas'
       ],
       package_data={'Questgen': ['questgen.py', 'mcq.py', 'train_gpu.py', 'encoding.py']}
