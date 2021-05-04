@@ -31,7 +31,6 @@ It is on a quest build the world's most advanced question generation AI leveragi
 ### 1.1 Libraries
 ```
 pip install git+https://github.com/ramsrigouthamg/Questgen.ai
-pip install sense2vec==1.0.2
 pip install git+https://github.com/boudinfl/pke.git
 
 python -m nltk.downloader universal_tagset
