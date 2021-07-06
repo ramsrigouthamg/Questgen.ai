@@ -7,7 +7,7 @@ It is on a quest build the world's most advanced question generation AI leveragi
 
 ## Online course and blog
 
- 🚀 [Our online course that teaches how to build these models from scratch](https://www.udemy.com/course/question-generation-using-natural-language-processing/?referralCode=C8EA86A28F5398CBF763)
+ 🚀 [Our online course that teaches how to build these models from scratch and deploy them](https://www.udemy.com/course/question-generation-using-natural-language-processing/?referralCode=C8EA86A28F5398CBF763)
 
 [Blog announcing the launch](https://towardsdatascience.com/questgen-an-open-source-nlp-library-for-question-generation-algorithms-1e18067fcdc6)
 
