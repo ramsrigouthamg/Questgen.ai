@@ -1,5 +1,6 @@
 # Questgen AI   <br>
-https://questgen.ai/  
+
+## Try advanced question generation models for free:  https://questgen.ai/  
 
 
 Questgen AI is an opensource NLP library focused on developing easy to use Question generation algorithms.<br>
@@ -232,8 +233,7 @@ Yes, sachin tendulkar is a former cricketer.
 
 For maintaining meaningfulness in Questions, Questgen uses Three T5 models. One for Boolean Question generation, one for MCQs, FAQs, Paraphrasing and one for answer generation.
 
-### Online Demo website
-Under development...
+### Online Demo website.
 https://questgen.ai/
 
 
