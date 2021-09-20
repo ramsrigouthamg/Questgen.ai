@@ -1,6 +1,6 @@
 ## High-quality diverse sentence Paraphraser.
 
-This paraphraser is trained on custom dataset with pairs of paraphrased sentences that are diverse. Diverse here means that pairs of senetcnes are selected such that there is significant difference in word order or at least the paraphrased output differs by multiple word changes. T5 large model from Huggingace is used to train the paraphraser.
+This paraphraser is trained on custom dataset with pairs of paraphrased sentences that are diverse. Diverse here means that pairs of sentences are selected such that there is significant difference in word order or at least the paraphrased output differs by multiple word changes. T5 large model from Huggingace is used to train the paraphraser.
 
 <img src= './Diverse Sentence Paraphraser.png' > 
 
@@ -25,11 +25,8 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print ("device ",device)
 model = model.to(device)
 
-```
 
-```
 # Beam Search
-
 context = "Once, a group of frogs was roaming around the forest in search of water."
 text = "paraphrase: "+context + " </s>"
 
@@ -65,11 +62,11 @@ paraphrasedoutput: A gang of frogs was wandering around the woods in search of w
 ```
 </details>
 
-Check out more examples in the Colab Notebook.
+Check out more examples using diverse beam search in the Colab Notebook.
 
 ## Try advanced question generation models for free:  https://questgen.ai/  
 
 
-This paraphraser is released by Questgen AI as apart of its opensource initiative to build advanced Question generation and related NLP algorithms.<br>
+This paraphraser is released by QuestgenAI as apart of its open-source initiative to build advanced Question generation and related NLP algorithms.<br>
 It is on a quest build the world's most advanced question generation AI leveraging on state-of-the-art transformer models like GPT-3, T5, BERT and OpenAI GPT-2 etc. <br>
 We would appreciate if you can spread the word out about Questgen.
