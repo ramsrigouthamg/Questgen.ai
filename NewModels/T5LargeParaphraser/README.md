@@ -26,7 +26,8 @@ print ("device ",device)
 model = model.to(device)
 
 
-# Beam Search
+# Diverse Beam search
+
 context = "Once, a group of frogs was roaming around the forest in search of water."
 text = "paraphrase: "+context + " </s>"
 
@@ -34,21 +35,22 @@ encoding = tokenizer.encode_plus(text,max_length =128, padding=True, return_tens
 input_ids,attention_mask  = encoding["input_ids"].to(device), encoding["attention_mask"].to(device)
 
 model.eval()
-beam_outputs = model.generate(
+diverse_beam_outputs = model.generate(
     input_ids=input_ids,attention_mask=attention_mask,
     max_length=128,
     early_stopping=True,
-    num_beams=15,
-    num_return_sequences=3
+    num_beams=5,
+    num_beam_groups = 5,
+    num_return_sequences=5,
+    diversity_penalty = 0.70
 
 )
 
 print ("\n\n")
 print ("Original: ",context)
-for beam_output in beam_outputs:
+for beam_output in diverse_beam_outputs:
     sent = tokenizer.decode(beam_output, skip_special_tokens=True,clean_up_tokenization_spaces=True)
     print (sent)
-
 ```
 <details>
 <summary>Show Output</summary>
@@ -56,17 +58,18 @@ for beam_output in beam_outputs:
 ```
 Original:  Once, a group of frogs was roaming around the forest in search of water.
 paraphrasedoutput: A herd of frogs was wandering around the woods in search of water.
-paraphrasedoutput: A herd of frogs was wandering around the woods in search of water once more.
-paraphrasedoutput: A gang of frogs was wandering around the woods in search of water once more.
+paraphrasedoutput: A herd of frogs was wandering around the woods in search of water.
+paraphrasedoutput: A gang of frogs was wandering around the forest in search of water at one time.
+paraphrasedoutput: A herd of frogs was swaning around the woods in search of water.
+paraphrasedoutput: A gang of frogs was roaming about the woods in search of water once more.
 
 ```
 </details>
 
-Check out more examples using diverse beam search in the Colab Notebook.
+Check out more examples in the Colab Notebook.
 
 ## Try advanced question generation models for free:  https://questgen.ai/  
 
 
-This paraphraser is released by QuestgenAI as apart of its open-source initiative to build advanced Question generation and related NLP algorithms.<br>
-It is on a quest build the world's most advanced question generation AI leveraging on state-of-the-art transformer models like GPT-3, T5, BERT and OpenAI GPT-2 etc. <br>
+This paraphraser is released by QuestgenAI as a part of its open-source initiative to build advanced Question generation and related NLP algorithms.It is on a quest build the world's most advanced question generation AI leveraging on state-of-the-art transformer models like GPT-3, T5, BERT and OpenAI GPT-2 etc. <br>
 We would appreciate if you can spread the word out about Questgen.
