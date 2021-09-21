@@ -1,8 +1,12 @@
+## [Blog post with more details](https://towardsdatascience.com/questgen-an-open-source-nlp-library-for-question-generation-algorithms-1e18067fcdc6)
+
 ## High-quality diverse sentence Paraphraser.
 
 This paraphraser is trained on custom dataset with pairs of paraphrased sentences that are diverse. Diverse here means that pairs of sentences are selected such that there is significant difference in word order or at least the paraphrased output differs by multiple word changes. T5 large model from Huggingace is used to train the paraphraser.
 
 <img src= './Diverse Sentence Paraphraser.png' > 
+
+
 
 ##  Google Colab Paraphraser Complete Demo
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/16zHH-g9z5S_gUQQk7vOxUfpT085wTQ9Z?usp=sharing)
