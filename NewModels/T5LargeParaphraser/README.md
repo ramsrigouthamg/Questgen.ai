@@ -1,4 +1,4 @@
-## [Blog post with more details](https://towardsdatascience.com/questgen-an-open-source-nlp-library-for-question-generation-algorithms-1e18067fcdc6)
+## [Blog post with more details](https://towardsdatascience.com/high-quality-sentence-paraphraser-using-transformers-in-nlp-c33f4482856f)
 
 ## High-quality diverse sentence Paraphraser.
 
