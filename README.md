@@ -229,6 +229,46 @@ Yes, sachin tendulkar is a former cricketer.
 ```
 </details>
 
+## 3. Use in Docker
+
+If needed (eg. due to build/install problems on MacOS), a Docker-based version can also be built and started. 
+
+This version uses an interactive Python environment called Jupyter Notebook (https://jupyter.org/).
+
+### 3.1 Prerequisites
+
+- Install Docker (see https://docs.docker.com/get-docker/).
+- Install any web browser.
+
+### 3.2 Build and start notebook
+
+Execute the following commands:
+
+```
+docker build . --tag questgen-ai:latest
+docker run -p 8888:8888 questgen-ai:latest
+```
+
+The notebook command that is run by `docker run` in the background eventually shall print its URL to the output:
+```$ docker run -p 8888:8888 hackweek:latest
+[I 08:33:50.908 NotebookApp] Writing notebook server cookie secret to /root/.local/share/jupyter/runtime/notebook_cookie_secret
+[I 08:33:51.078 NotebookApp] Serving notebooks from local directory: /src/jupyter
+[I 08:33:51.078 NotebookApp] Jupyter Notebook 6.4.8 is running at:
+[I 08:33:51.079 NotebookApp] http://e4a08a830f4e:8888/?token=c7eec1eafcf292f1595f3786f3de5dd15080d9fd277da5b0
+[I 08:33:51.079 NotebookApp]  or http://127.0.0.1:8888/?token=c7eec1eafcf292f1595f3786f3de5dd15080d9fd277da5b0
+[I 08:33:51.079 NotebookApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+[C 08:33:51.082 NotebookApp]
+
+    To access the notebook, open this file in a browser:
+        file:///root/.local/share/jupyter/runtime/nbserver-7-open.html
+    Or copy and paste one of these URLs:
+        http://e4a08a830f4e:8888/?token=c7eec1eafcf292f1595f3786f3de5dd15080d9fd277da5b0
+     or http://127.0.0.1:8888/?token=c7eec1eafcf292f1595f3786f3de5dd15080d9fd277da5b0
+```
+
+Do not exit from this command.  Copy and paste the URL starting with `127.0.0.1` to the browser to login to Jupyter. 
+By opening a new notebook the code examples above shall work.
+
 ### NLP models used
 
 For maintaining meaningfulness in Questions, Questgen uses Three T5 models. One for Boolean Question generation, one for MCQs, FAQs, Paraphrasing and one for answer generation.
