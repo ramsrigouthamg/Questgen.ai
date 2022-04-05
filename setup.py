@@ -16,9 +16,9 @@ setup(name='Questgen',
            'strsim==0.0.3',
            'six==1.15.0',
            'networkx==2.4.0',
-           'numpy',
-           'scipy',
-           'scikit-learn',
+           'numpy==1.16.3',
+           'scipy==1.4.1',
+           'scikit-learn==0.22.1',
            'unidecode==1.1.1',
            'future==0.18.2',
            'joblib==0.14.1',
@@ -27,7 +27,7 @@ setup(name='Questgen',
            'python-dateutil==2.8.1',
            'boto3==1.14.40',
            'flashtext==2.7',
-           'pandas'
+           'pandas==1.1.1'
       ],
       package_data={'Questgen': ['questgen.py', 'mcq.py', 'train_gpu.py', 'encoding.py']}
       )
