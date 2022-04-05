@@ -5,7 +5,6 @@ import torch
 from transformers import T5ForConditionalGeneration,T5Tokenizer
 import random
 import spacy
-import boto3
 import zipfile
 import os
 import json
