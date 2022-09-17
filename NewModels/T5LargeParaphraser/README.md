@@ -4,6 +4,8 @@
 
 This paraphraser is trained on custom dataset with pairs of paraphrased sentences that are diverse. Diverse here means that pairs of sentences are selected such that there is significant difference in word order or at least the paraphrased output differs by multiple word changes. T5 large model from Huggingface is used to train the paraphraser.
 
+Note: This paraphraser is trained to paraphrase short English sentences and works best for those inputs.
+
 <img src= './Diverse Sentence Paraphraser.png' > 
 
 
