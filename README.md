@@ -75,10 +75,9 @@ pprint (output)
 
 ### 2.2 Generate MCQ Questions
 ```
-    qg = main.QGen()
-    output = qg.predict_mcq(payload)
-    pprint (output)
-    
+qg = main.QGen()
+output = qg.predict_mcq(payload)
+pprint (output)
 ```
 
 <details>
