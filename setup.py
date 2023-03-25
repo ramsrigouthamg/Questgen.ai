@@ -9,7 +9,7 @@ setup(name='Questgen',
       url="https://github.com/ramsrigouthamg/Questgen.ai",
       install_requires=[
          
-           'torch==1.10.0',
+           'torch==1.13.1',
            'transformers==4.12.0',
            'sense2vec==2.0.0',
            'strsim==0.0.3',
