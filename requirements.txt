@@ -1,5 +1,7 @@
 torch==1.10.0
-transformers==3.0.2
+tokenizers==0.9.4
+sentencepiece==0.1.97
+transformers==3.0.2 --install-option="--no-deps"
 sense2vec==2.0.0
 strsim==0.0.3
 six==1.15.0
