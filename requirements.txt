@@ -1,4 +1,4 @@
-torch==1.10.0
+torch==2.0.0
 transformers==4.12.0
 sense2vec==2.0.0
 strsim==0.0.3
