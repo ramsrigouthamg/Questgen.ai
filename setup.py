@@ -8,7 +8,7 @@ setup(name='Questgen',
       packages=['Questgen', 'Questgen.encoding', 'Questgen.mcq'],
       url="https://github.com/ramsrigouthamg/Questgen.ai",
       install_requires=[
-            'torch"==2.0.1',
+            'torch==2.0.1',
             'transformers==4.29.2',
             'sense2vec==2.0.2',
             'strsim==0.0.3',
