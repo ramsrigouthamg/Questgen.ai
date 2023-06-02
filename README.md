@@ -24,7 +24,7 @@ It is on a quest build the world's most advanced question generation AI leveragi
 </pre>
 
 ## Simple and Complete Google Colab Demo
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1CvgSjU48kN5jEtCU732soM723W1spGdm?usp=sharing)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1B_mYiUJziuyZygbxA1iP0RmM0iPP8qPB?usp=sharing)
 
 
 ## 1. Installation
