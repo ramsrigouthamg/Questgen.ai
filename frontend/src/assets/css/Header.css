@@ -1,0 +1,13 @@
+.hearder {
+    width: 12%;
+    height: 100%;
+    min-height: 1000px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.bg-hearder {
+    background-color: rgb(99 102 241);
+}

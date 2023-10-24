@@ -1,0 +1,25 @@
+.button-edit {
+    background-color: rgb(59, 130, 246);
+    color: white;
+    margin-left: 1rem;
+    border: 1px solid rgb(63, 81, 181);
+    padding: 6px 16px;
+}
+
+.button-edit-true {
+    background-color: rgb(0, 0, 0);
+    color: white;
+    margin-left: 1rem;
+    border: 1px solid rgb(63, 81, 181);
+    padding: 6px 16px;
+}
+
+.space-y-4>:not([hidden])~:not([hidden]) {
+    --tw-space-y-reverse: 0;
+    margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
+    margin-bottom: calc(1rem * var(--tw-space-y-reverse));
+}
+
+.list-inside {
+    list-style-position: inside;
+}
