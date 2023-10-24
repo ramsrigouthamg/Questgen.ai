@@ -236,5 +236,3 @@ For maintaining meaningfulness in Questions, Questgen uses Three T5 models. One 
 ### Online Demo website.
 https://questgen.ai/
 
-
-[![Linkedin Link](linkedin.png)](https://www.linkedin.com/company/30182152/)

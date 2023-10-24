@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import InputText from "./components/InputText";
 import OutputText from "./components/OutputText"
 import Header from "../../components/Header";
+import { fetchData } from './api';
 //import Footer from "../../components/Footer";
 import "../../assets/css/Home/index.css"
 export default function Home() {
@@ -11,8 +12,23 @@ export default function Home() {
 
   function SetPrediction(x: any) {
     setPrediction(x);
-    setQuestions(x.questions);
+    if (x && x.questions) {
+      setQuestions(x.questions);
+    } else {
+      setQuestions([]);
+    }
   }
+
+  useEffect(() => {
+    fetchData()
+      .then((data) => {
+        setPrediction(data);
+        setQuestions(data.questions);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []); 
 
   function outputText() {
     if (prediction != null) {

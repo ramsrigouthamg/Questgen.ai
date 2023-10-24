@@ -16,7 +16,7 @@ export default function InputText(props: any) {
     return (
         <div className="input-text text-md mb-2 flex-column flex">
             <div className="mb-2">
-                Questions? Write to: ramsri@questgen.ai
+                Questions? Write to: hh11chelsea@gmail.com
             </div>
             <div className="mb-2">
                 Supported text length: 5,000 words on the free plan. Supports English and other major languages.
