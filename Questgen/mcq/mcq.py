@@ -206,8 +206,12 @@ def get_keywords(nlp,text,max_keywords,s2v,fdist,normalized_levenshtein,no_of_se
 
     answers = []
     for answer in total_phrases_filtered:
-        if answer not in answers and MCQs_available(answer,s2v):
-            answers.append(answer)
+        if s2v is None:
+            if answer not in answers:
+                answers.append(answer)
+        else:
+            if answer not in answers and MCQs_available(answer, s2v):
+                answers.append(answer)
 
     answers = answers[:max_keywords]
     return answers
