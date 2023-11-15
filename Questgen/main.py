@@ -16,9 +16,9 @@ import pke
 import nltk
 import numpy 
 from nltk import FreqDist
-nltk.download('brown')
-nltk.download('stopwords')
-nltk.download('popular')
+nltk.download('brown', quiet=True, force=True)
+nltk.download('stopwords', quiet=True, force=True)
+nltk.download('popular', quiet=True, force=True)
 from nltk.corpus import stopwords
 from nltk.corpus import brown
 from similarity.normalized_levenshtein import NormalizedLevenshtein
@@ -35,16 +35,15 @@ import time
 class QGen:
     
     def __init__(self):
-        
-        
-        self.tokenizer = T5Tokenizer.from_pretrained('t5-base')
+
+        self.tokenizer = T5Tokenizer.from_pretrained('t5-large')
         model = T5ForConditionalGeneration.from_pretrained('Parth/result')
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         model.to(device)
         # model.eval()
         self.device = device
         self.model = model
-        self.nlp = spacy.load('en_core_web_sm')
+        self.nlp = spacy.load('en_core_web_sm', quiet=True)
 
         self.s2v = Sense2Vec().from_disk('s2v_old')
 
@@ -248,7 +247,7 @@ class BoolQGen:
 class AnswerPredictor:
           
     def __init__(self):
-        self.tokenizer = T5Tokenizer.from_pretrained('t5-base')
+        self.tokenizer = T5Tokenizer.from_pretrained('t5-large', model_max_length=512)
         model = T5ForConditionalGeneration.from_pretrained('Parth/boolean')
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         model.to(device)
@@ -269,20 +268,21 @@ class AnswerPredictor:
         return Question.strip().capitalize()
 
     def predict_answer(self,payload):
-        start = time.time()
+        answers = []
         inp = {
-            "input_text": payload.get("input_text"),
-            "input_question" : payload.get("input_question")
-        }
+                "input_text": payload.get("input_text"),
+                "input_question" : payload.get("input_question")
+            }
+        for ques in payload.get("input_question"):
+                
+            context = inp["input_text"]
+            question = ques
+            input = "question: %s <s> context: %s </s>" % (question,context)
 
-        context = inp["input_text"]
-        question = inp["input_question"]
-        input = "question: %s <s> context: %s </s>" % (question,context)
+            encoding = self.tokenizer.encode_plus(input, return_tensors="pt")
+            input_ids, attention_masks = encoding["input_ids"].to(self.device), encoding["attention_mask"].to(self.device)
+            greedy_output = self.model.generate(input_ids=input_ids, attention_mask=attention_masks, max_length=256)
+            Question =  self.tokenizer.decode(greedy_output[0], skip_special_tokens=True,clean_up_tokenization_spaces=True)
+            answers.append(Question.strip().capitalize())
 
-        encoding = self.tokenizer.encode_plus(input, return_tensors="pt")
-        input_ids, attention_masks = encoding["input_ids"].to(self.device), encoding["attention_mask"].to(self.device)
-        greedy_output = self.model.generate(input_ids=input_ids, attention_mask=attention_masks, max_length=256)
-        Question =  self.tokenizer.decode(greedy_output[0], skip_special_tokens=True,clean_up_tokenization_spaces=True)
-        output = Question.strip().capitalize()
-
-        return output
+        return answers
