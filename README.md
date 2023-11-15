@@ -188,8 +188,10 @@ pprint (output)
 </details>
 
 ### 2.5 Question Answering (Simple)
+BERT model is also added for Question Answering for faster inference and shorter answers. Default is T5 Large. 
+A list of questions can be passed to receive a list of answers.
 ```
-answer = main.AnswerPredictor()
+answer = main.AnswerPredictor(model_name="BERT")
 payload3 = {
     "input_text" : '''Sachin Ramesh Tendulkar is a former international cricketer from 
               India and a former captain of the Indian national team. He is widely regarded 
@@ -210,6 +212,7 @@ Sachin ramesh tendulkar is a former international cricketer from india and a for
 </details>
 
 ### 2.6 Question Answering (Boolean)
+
 ```
 payload4 = {
     "input_text" : '''Sachin Ramesh Tendulkar is a former international cricketer from 
@@ -232,6 +235,7 @@ Yes, sachin tendulkar is a former cricketer.
 ### NLP models used
 
 For maintaining meaningfulness in Questions, Questgen uses Three T5 models. One for Boolean Question generation, one for MCQs, FAQs, Paraphrasing and one for answer generation.
+
 
 ### Online Demo website.
 https://questgen.ai/
