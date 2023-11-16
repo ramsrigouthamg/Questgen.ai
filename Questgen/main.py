@@ -1,5 +1,5 @@
-import numpy as np # linear algebra
-import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
+import numpy as np 
+import pandas as pd
 import time
 import torch
 from transformers import T5ForConditionalGeneration,T5Tokenizer
@@ -44,7 +44,7 @@ class QGen:
         # model.eval()
         self.device = device
         self.model = model
-        self.nlp = spacy.load('en_core_web_sm', quiet=True)
+        self.nlp = spacy.load('en_core_web_sm')
 
         self.s2v = Sense2Vec().from_disk('s2v_old')
 
@@ -166,7 +166,7 @@ class QGen:
             num_beams=50,
             num_return_sequences=num,
             no_repeat_ngram_size=2,
-            early_stopping=True
+            early_stopping=True,
             )
 
 #         print ("\nOriginal Question ::")
@@ -196,7 +196,7 @@ class QGen:
 class BoolQGen:
        
     def __init__(self):
-        self.tokenizer = T5Tokenizer.from_pretrained('t5-large')
+        self.tokenizer = T5Tokenizer.from_pretrained('t5-base')
         model = T5ForConditionalGeneration.from_pretrained('ramsrigouthamg/t5_boolean_questions')
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         model.to(device)
@@ -249,14 +249,15 @@ class AnswerPredictor:
           
     def __init__(self, model_name = "T5"):
         self.model_name = model_name
-        if self.model_name:
-            self.tokenizer = T5Tokenizer.from_pretrained('t5-large', model_max_length=512)
+        if self.model_name == "T5":
+            self.tokenizer = T5Tokenizer.from_pretrained('t5-base', model_max_length=512)
             model = T5ForConditionalGeneration.from_pretrained('Parth/boolean')
+            # print(model, self.tokenizer)
         
         if self.model_name == "BERT":
             from transformers import AutoModelForQuestionAnswering, AutoTokenizer
             model = AutoModelForQuestionAnswering.from_pretrained("Falconsai/question_answering")
-            self.tokenizer = AutoTokenizer.from_pretrained("Falconsai/question_answering")
+            self.tokenizer = AutoTokenizer.from_pretrained("Falconsai/question_answering", model_max_length=512)
 
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         model.to(device)
@@ -272,20 +273,15 @@ class AnswerPredictor:
             torch.cuda.manual_seed_all(seed)
 
     def greedy_decoding (inp_ids,attn_mask,model,tokenizer):
-        greedy_output = model.generate(input_ids=inp_ids, attention_mask=attn_mask)
+        greedy_output = model.generate(input_ids=inp_ids, attention_mask=attn_mask, max_length=256)
         Question =  tokenizer.decode(greedy_output[0], skip_special_tokens=True,clean_up_tokenization_spaces=True)
         return Question.strip().capitalize()
 
     def predict_answer(self,payload):
         answers = []
-        inp = {
-                "input_text": payload.get("input_text"),
-                "input_question" : payload.get("input_question")
-            }
-    
+        context = payload["input_text"]
+        
         for ques in payload.get("input_question"):
-                
-            context = inp["input_text"]
             question = ques
             input =  "question: %s <s> context: %s </s>" % (question,context)
 
@@ -293,11 +289,11 @@ class AnswerPredictor:
             if self.model_name == "T5":
                 encoding = self.tokenizer.encode_plus(input, return_tensors="pt")
                 input_ids, attention_masks = encoding["input_ids"].to(self.device), encoding["attention_mask"].to(self.device)
-                encoding = self.tokenizer.encode_plus(input, return_tensors="pt")
-                input_ids, attention_masks = encoding["input_ids"].to(self.device), encoding["attention_mask"].to(self.device)
-                greedy_output = self.model.generate(input_ids=input_ids, attention_mask=attention_masks, max_length=256)
+                greedy_output = self.model.generate(input_ids=input_ids, attention_mask=attention_masks, max_length=512)
                 Answer =  self.tokenizer.decode(greedy_output[0], skip_special_tokens=True,clean_up_tokenization_spaces=True)
-                answers.append(Answer.strip().capitalize())
+                output = Answer.strip().capitalize()
+                answers.append(output)
+            break
             if self.model_name == "BERT":
                 with torch.no_grad():
                     outputs = self.model(**inputs)
